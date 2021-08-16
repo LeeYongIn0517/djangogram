@@ -27,7 +27,7 @@ class Comment(TimeStamedModel):
             user_model.User,
             null=True,
             on_delete=models.CASCADE, #계정 삭제시 해당 정보도 삭제
-            related_name='post_author' #특정 사용자가 작성한 질문을 얻을 때 사용, ex)some_user.post_author.all()                                       
+            related_name='comment_author' #특정 사용자가 작성한 질문을 얻을 때 사용, ex)some_user.post_author.all()                                       
             )
     posts = models.ForeignKey(
             Post,
