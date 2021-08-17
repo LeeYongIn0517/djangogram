@@ -19,13 +19,24 @@ def main(request):
             ...
         else:
             return render(request, 'users/main.html')
+            
 def signup(request):
     if request.method == 'GET':
         form = SignUpForm()
 
         return render(request, 'users/signup.html', {'form':form})
+
     elif request.method == 'POST':
         form = SignUpForm(request.POST)
 
         if form.is_valid():
             form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect(reverse('post:index'))
+
+        return render(request, 'users/main.html')
