@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, intial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Djangogram</title>
+    <title>{% block title %} {% endblock title%}Djangogram</title>
 </head>
 <body>
     Here is base.html
     <div>
         {% block content %} {% endblock %}
     </div>
-    <footer>
-        footer
-    </footer>
+    {% include "users/footer.html" %}
 </body>
 </html>
