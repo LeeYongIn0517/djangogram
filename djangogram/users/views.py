@@ -37,6 +37,6 @@ def signup(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect(reverse('post:index'))
+                return HttpResponseRedirect(reverse('posts:index'))
 
         return render(request, 'users/main.html')
