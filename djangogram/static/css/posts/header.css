@@ -1,0 +1,14 @@
+/*Header*/
+.header-box {
+    height: 54px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+.header-box {
+    width: 945px;
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
