@@ -2,17 +2,23 @@
 <header>
     <div class="header-box">
         <div class="main-img">
-            <img src="{% static 'images/posts/main_logo.png' %}" alt="logo">
+            <a href="{% url 'posts:index' %}">
+                <img src="{% static 'images/posts/main_logo.png' %}" alt="logo">
+            </a>
         </div> 
         <div class="search">
             <input type="text" placeholder="Search">
         </div>
         <div class="header-right">
             <div>
-                <i class="fas fa-plus-circle"></i>
+                <a href="{% url 'posts:posts_create' %}">
+                    <i class="fas fa-plus-circle"></i>
+                </a>
             </div>
             <div>
-                <i class="fas fa-users"></i>
+                <a href="#">
+                    <i class="fas fa-users"></i>
+                </a>
             </div>
         </div>
     </div> 
