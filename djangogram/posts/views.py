@@ -22,5 +22,7 @@ def posts_create(request):
                 caption = caption
             )
             new_post.save()
+
+            return render(request, 'posts/base.html')
         else:
             return render(request, 'users/main.html')
