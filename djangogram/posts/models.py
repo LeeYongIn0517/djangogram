@@ -16,8 +16,8 @@ class Post(TimeStamedModel):
             on_delete=models.CASCADE, #계정 삭제시 해당 정보도 삭제
             related_name='post_author' #특정 사용자가 작성한 질문을 얻을 때 사용, ex)some_user.post_author.all()                                       
             )
-    image = models.ImageField(blank=True)
-    caption = models.TextField(blank=True)
+    image = models.ImageField(blank=False)
+    caption = models.TextField(blank=False)
     image_likes = models.ManyToManyField(user_model.User, related_name='post_images_likes')
 
 class Comment(TimeStamedModel):
