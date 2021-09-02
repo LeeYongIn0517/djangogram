@@ -1,12 +1,20 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from djangogram.users.models import User as user_model
 
-from django.db import models
+from .import models
 from .forms import CreatePostForm
 
 # Create your views here.
 def index(request):
-    return render(request, 'posts/base.html')
+    if request.method == "GET":
+        if request.user.is_authenticated:
+            user = get_object_or_404(user_model, pk=request.user.id)
+            following = user.following.all()
+            posts = models.Post.objects.filter(
+                Q(author__in=following | Q(author=user))
+            )
+            return render(request, 'posts/base.html')
 
 def posts_create(request):
     if request.method == 'GET':
@@ -34,7 +42,7 @@ def posts_create(request):
                 post.save()
             else:
                 print(form.errors)
-                
+
             return render(request, 'posts/main.html')
         else:
             return render(request, 'users/main.html')
