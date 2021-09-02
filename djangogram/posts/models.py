@@ -18,7 +18,14 @@ class Post(TimeStamedModel):
             )
     image = models.ImageField(blank=False)
     caption = models.TextField(blank=False)
-    image_likes = models.ManyToManyField(user_model.User, related_name='post_images_likes')
+    image_likes = models.ManyToManyField(
+            user_model.User,
+            blank=True,
+            related_name='post_images_likes'
+        )
+    
+    def __str__(self):
+        return f"{self.author}: {self.caption}" 
 
 class Comment(TimeStamedModel):
     author = models.ForeignKey(
@@ -34,3 +41,6 @@ class Comment(TimeStamedModel):
             related_name='comment_post' #특정 사용자가 작성한 질문을 얻을 때 사용, ex)some_user.post_author.all()                                       
             )
     contents = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"{self.author}: {self.contents}" 
